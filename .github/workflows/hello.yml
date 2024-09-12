@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: Say Hello
+    name: Say Hello ${{ env.NAME }}
     runs-on: ubuntu-latest
 
     steps:
