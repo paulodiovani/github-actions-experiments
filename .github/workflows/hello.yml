@@ -12,14 +12,14 @@ on:
 
 jobs:
   say:
-    name: "Say Hello [name: ${{ github.event.inputs.name || 'World' }}]"
+    name: Say Hello ${{ github.event.inputs.name || 'World' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello, ${{ github.event.inputs.name }}!
+      - run: echo Hello, ${{ github.event.inputs.name || 'World' }}!
       - run: sleep 30
 
   finish:
-    name: "Wait for say ${{ github.event.inputs.name }} to finish"
+    name: Wait for say ${{ github.event.inputs.name || 'World' }} to finish
     needs: say
     runs-on: ubuntu-latest
     steps:
