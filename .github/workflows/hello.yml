@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: Say Hello ${{ env.NAME }}
+    name: Say Hello ${{ github.event.inputs.name || 'World' }}
     runs-on: ubuntu-latest
 
     steps:
