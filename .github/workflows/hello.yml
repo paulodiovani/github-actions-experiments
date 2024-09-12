@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo Hello, ${{ github.event.inputs.name || 'World' }}!
-      - run: sleep 30
+      - run: sleep 10
 
   finish:
     name: Wait for say ${{ github.event.inputs.name || 'World' }} to finish
