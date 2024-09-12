@@ -10,13 +10,17 @@ on:
         description: 'Who to greet'
         required: false
 
-env:
-  NAME: ${{ github.event.inputs.name || 'World' }}
-
 jobs:
-  build:
+  say:
     name: "Say Hello [name: ${{ github.event.inputs.name || 'World' }}]"
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo Hello, ${{ env.NAME }}!
+      - run: echo Hello, ${{ github.event.inputs.name }}!
+      - run: sleep 30
+
+  finish:
+    name: "Wait for say ${{ github.event.inputs.name }} to finish"
+    needs: say
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Done!
