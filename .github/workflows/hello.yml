@@ -20,6 +20,7 @@ jobs:
 
   finish:
     name: Wait for say ${{ github.event.inputs.name || 'World' }} to finish
+    if: ${{ github.event.inputs.name != 'none' }}
     needs: say
     runs-on: ubuntu-latest
     steps:
