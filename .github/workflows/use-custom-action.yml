@@ -17,18 +17,18 @@ on:
 
 jobs:
   say:
-    name: Say Hello ${{ github.event.inputs.name }}
+    name: Say Hello ${{ inputs.name }} ${{ inputs.skip == true && '[skipped]' || ''}}
     runs-on: ubuntu-latest
     steps:
       - name: Print options
         run: |
-          echo name is ${{ github.event.inputs.name }}
-          echo skip is ${{ github.event.inputs.skip }}
+          echo name is ${{ inputs.name }}
+          echo skip is ${{ inputs.skip }}
 
       - uses: actions/checkout@v4
-        if: ${{ github.event.inputs.skip != 'true' }}
+        if: ${{ inputs.skip != true }}
 
       - uses: ./.github/actions/say-hello
-        if: ${{ github.event.inputs.skip != 'true' }}
+        if: ${{ inputs.skip != true }}
         with:
-          who-to-greet: ${{ github.event.inputs.name }}
+          who-to-greet: ${{ inputs.name }}
