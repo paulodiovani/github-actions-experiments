@@ -1,5 +1,5 @@
 ---
-name: Use composite actions
+name: Use custom action
 
 on:
   push:
