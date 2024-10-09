@@ -17,7 +17,7 @@ on:
 
 jobs:
   say:
-    name: Say Hello ${{ inputs.name }} ${{ inputs.skip == 'true' && '[skipped]' || ''}}
+    name: Say Hello ${{ inputs.name }} ${{ inputs.skip == true && '[skipped]' || ''}}
     runs-on: ubuntu-latest
     steps:
       - name: Print options
@@ -26,9 +26,9 @@ jobs:
           echo skip is ${{ inputs.skip }}
 
       - uses: actions/checkout@v4
-        if: ${{ inputs.skip != 'true' }}
+        if: ${{ inputs.skip != true }}
 
       - uses: ./.github/actions/say-hello
-        if: ${{ inputs.skip != 'true' }}
+        if: ${{ inputs.skip != true }}
         with:
           who-to-greet: ${{ inputs.name }}
