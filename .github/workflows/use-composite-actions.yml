@@ -1,0 +1,21 @@
+---
+name: Use composite actions
+
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Who to greet'
+        required: false
+        default: 'World'
+
+jobs:
+  say:
+    name: Say Hello ${{ github.event.inputs.name }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: .github/actions/say-hello
+        with:
+          who-to-greet: ${{ github.event.inputs.name }}
