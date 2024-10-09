@@ -26,9 +26,9 @@ jobs:
           echo skip is ${{ github.event.inputs.skip }}
 
       - uses: actions/checkout@v4
-        if: ${{ github.event.inputs.skip != true }}
+        if: ${{ github.event.inputs.skip != 'true' }}
 
       - uses: ./.github/actions/say-hello
-        if: ${{ github.event.inputs.skip != true }}
+        if: ${{ github.event.inputs.skip != 'true' }}
         with:
           who-to-greet: ${{ github.event.inputs.name }}
