@@ -20,6 +20,11 @@ jobs:
     name: Say Hello ${{ github.event.inputs.name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Print options
+        run: |
+          echo name is ${{ github.event.inputs.name }}
+          echo skip is ${{ github.event.inputs.skip }}
+
       - uses: actions/checkout@v4
         if: ${{ github.event.inputs.skip != true }}
 
