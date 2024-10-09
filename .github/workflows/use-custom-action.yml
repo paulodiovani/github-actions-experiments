@@ -14,35 +14,21 @@ on:
         type: boolean
         description: Skip action?
         default: false
-      environment:
-        type: environment
-        description: Select the environment
-      boolean:
-        type: boolean
-        description: True or False
-      choice:
-        type: choice
-        description: Make a choice
-        options:
-        - foo
-        - bar
-        - baz
 
 jobs:
   say:
     name: Say Hello ${{ github.event.inputs.name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Print options
+        run: |
+          echo name is ${{ github.event.inputs.name }}
+          echo skip is ${{ github.event.inputs.skip }}
+
       - uses: actions/checkout@v4
-        if: ${{ github.event.inputs.skip != true }}
+        if: ${{ github.event.inputs.skip != 'true' }}
 
       - uses: ./.github/actions/say-hello
-        if: ${{ github.event.inputs.skip != true }}
+        if: ${{ github.event.inputs.skip != 'true' }}
         with:
           who-to-greet: ${{ github.event.inputs.name }}
-
-      - name: inputs
-        run: |
-          echo "environment is ${{ github.event.inputs.environment }} / ${{ inputs.environment }}"
-          echo "boolean is ${{ github.event.inputs.boolean }} / ${{ inputs.boolean }}"
-          echo "choice is ${{ github.event.inputs.choice }} / ${{ inputs.choice }}"
