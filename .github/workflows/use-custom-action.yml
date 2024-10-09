@@ -7,9 +7,13 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'Who to greet'
+        description: Who to greet
         required: false
         default: 'World'
+      skip:
+        type: boolean
+        description: Skip action?
+        default: false
 
 jobs:
   say:
@@ -17,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        if: ${{ github.event.inputs.skip != true }}
 
       - uses: ./.github/actions/say-hello
+        if: ${{ github.event.inputs.skip != true }}
         with:
           who-to-greet: ${{ github.event.inputs.name }}
