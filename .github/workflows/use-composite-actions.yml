@@ -16,6 +16,8 @@ jobs:
     name: Say Hello ${{ github.event.inputs.name }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - uses: ./.github/actions/say-hello
         with:
           who-to-greet: ${{ github.event.inputs.name }}
