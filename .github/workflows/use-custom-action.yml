@@ -17,7 +17,7 @@ on:
 
 jobs:
   say:
-    name: Say Hello ${{ github.event.inputs.name }}
+    name: Say Hello ${{ inputs.name }} ${{ inputs.skip == 'true' && '[skipped]' || ''}}
     runs-on: ubuntu-latest
     steps:
       - name: Print options
