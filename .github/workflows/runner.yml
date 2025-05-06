@@ -1,0 +1,28 @@
+---
+name: Run another workflow
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      call-hello:
+        type: boolean
+        description: Call Hello Workflow?
+        default: false
+
+
+jobs:
+  start:
+    name: Start
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Workflow started'
+      - run: sleep 10
+
+  run_hello:
+    needs: [start]
+    if: inputs.call-hello == true
+    uses: ./.github/workflows/hello.yml
+    with:
+      name: GitHub 🐙🐱
