@@ -1,12 +1,16 @@
 ---
 name: Hello World Workflow
 
-on: 
-  push:
-  pull_request:
+on:
   workflow_dispatch:
     inputs:
       name:
+        description: 'Who to greet'
+        required: false
+  workflow_call:
+    inputs:
+      name:
+        type: string
         description: 'Who to greet'
         required: false
 
